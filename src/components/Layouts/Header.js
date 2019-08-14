@@ -130,7 +130,7 @@ class Header extends Component {
                                             <i className="fa fa-shopping-basket" /> <span>{this.props.cartitems.length} item(s)</span>
                                         </a>
                                     </li>
-                                    {this.state.isShowQuick ? <Quickcart /> : ''}
+                                    {this.state.isShowQuick ? <Quickcart close={() => this.showQuick(false)} /> : ''}
                                 </ul>
                             </div>
                         </div>

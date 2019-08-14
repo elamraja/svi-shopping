@@ -14,9 +14,12 @@ class Quickcart extends Component {
         });
         return (
             <div className="quick_cart">
+                <a onClick={this.props.close} className="close_pop" href="#">
+                    <i className="fa fa-times" />
+                </a>
                 {this.props.cartitems.map(item => {
                     return (
-                        <div key={item} className="cart-item-list">
+                        <div key={item.id} className="cart-item-list">
                             <img src={mediaURL + item.id + '.jpg'} alt="" />
                             <a href="#">
                                 <h3>{trancateTitle(item.name, 30)}</h3>
@@ -39,9 +42,9 @@ class Quickcart extends Component {
                     <Link to="cart/" className="cart-view">
                         View all
                     </Link>
-                    <a href="check-out.html" className="cart-checkout">
+                    <Link to="/checkout/" className="cart-checkout">
                         Check out
-                    </a>
+                    </Link>
                 </div>
             </div>
         );

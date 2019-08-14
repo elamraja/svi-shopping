@@ -3,7 +3,8 @@ import Header from '../components/Layouts/Header.js';
 import Footer from '../components/Layouts/Footer.js';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { CART_REMOVE } from '../store.js';
+import { Link } from 'react-router-dom';
+import { CART_REMOVE, CART_UPDATE } from '../store.js';
 import { apiBASE, mediaURL, cnCurrency } from '../utils/common.js';
 class Cart extends Component {
     constructor(props) {
@@ -46,7 +47,15 @@ class Cart extends Component {
                                                     </td>
                                                     <td>{item.name}</td>
                                                     <td>{cnCurrency(item.price)}</td>
-                                                    <td className="text-center">{item.qty}</td>
+                                                    <td className="text-center">
+                                                        <a href="#" onClick={() => this.props.updateCart(item, 'dec')} className="update_btn dec">
+                                                            <i className="fa fa-minus" />
+                                                        </a>
+                                                        {item.qty}
+                                                        <a href="#" onClick={() => this.props.updateCart(item, 'inc')} className="update_btn inc">
+                                                            <i className="fa fa-plus" />
+                                                        </a>
+                                                    </td>
                                                     <td className="text-right">{cnCurrency(item.qty * item.price)}</td>
                                                     <td className="text-center">
                                                         <a onClick={() => this.props.removeCart(item)} href="#">
@@ -71,10 +80,14 @@ class Cart extends Component {
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <a className="btn btn-dark btn-link">Continue Shopping</a>
+                                <Link to="/" className="btn btn-dark btn-link">
+                                    Continue Shopping
+                                </Link>
                             </div>
                             <div className="col-md-6 text-right">
-                                <a className="btn btn-primary  btn-link">Checkout</a>
+                                <Link to="/checkout/" className="btn btn-primary  btn-link">
+                                    Checkout
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -94,6 +107,9 @@ const mapDispatchToProps = dispatch => {
     return {
         removeCart: item => {
             dispatch({ type: CART_REMOVE, item: item });
+        },
+        updateCart: (item, atype) => {
+            dispatch({ type: CART_UPDATE, item: item, status: atype });
         }
     };
 };

@@ -4,6 +4,7 @@ export const USER_SIGNOUT = 'user/logout';
 export const CART_ADD = 'cart/add';
 export const CART_UPDATE = 'cart/update';
 export const CART_REMOVE = 'cart/remove';
+export const CART_CLEAR = 'cart/clear';
 
 const userInitialState = {
     isUserAuthenticated: false,
@@ -57,6 +58,30 @@ const userReducer = (state = userInitialState, action) => {
             return state;
             break;
         }
+        case CART_UPDATE: {
+            var newCart = [];
+            var newsCart = JSON.parse(window.sessionStorage.getItem('cart_items'));
+            if (newsCart) {
+                newCart = newsCart.map(item => {
+                    if (item.id == action.item.id) {
+                        if (action.status == 'inc') {
+                            item.qty = item.qty + 1;
+                        } else {
+                            if (item.qty > 1) {
+                                item.qty = item.qty - 1;
+                            }
+                        }
+                    }
+                    return item;
+                });
+            }
+            console.log('item:', action.item);
+            window.sessionStorage.setItem('cart_items', JSON.stringify(newCart));
+            state.cartItems = newCart;
+            console.log(state.cartItems);
+            return state;
+            break;
+        }
         case CART_REMOVE: {
             var newCart = [];
             var newsCart = JSON.parse(window.sessionStorage.getItem('cart_items'));
@@ -72,6 +97,12 @@ const userReducer = (state = userInitialState, action) => {
             window.sessionStorage.setItem('cart_items', JSON.stringify(newCart));
             state.cartItems = newCart;
             console.log(state.cartItems);
+            return state;
+            break;
+        }
+        case CART_CLEAR: {
+            window.sessionStorage.removeItem('cart_items');
+            state.cartItems = [];
             return state;
             break;
         }
