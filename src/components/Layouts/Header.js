@@ -48,6 +48,43 @@ class Header extends Component {
                                             <i className="fa fa-shopping-basket" /> <span>0 item's</span>
                                         </a>
                                     </li>
+                                    <div className="quick_cart">
+                                        <div class="cart-item-list">
+                                            <img src="img/index/cart-item-1.jpg" alt="" />
+                                            <a href="index-new.html#">
+                                                <h3>Beats Classic Headphone</h3>
+                                            </a>
+                                            <b>
+                                                <a href="index-new.html#">X</a>
+                                            </b>
+                                            <p>
+                                                $88.00 <del>$120.00</del>
+                                            </p>
+                                        </div>
+                                        <div class="cart-item-list">
+                                            <img src="img/index/cart-item-2.jpg" alt="" />
+                                            <a href="index-new.html#">
+                                                <h3>Samsung Classic Tablet</h3>
+                                            </a>
+                                            <b>
+                                                <a href="index-new.html#">X</a>
+                                            </b>
+                                            <p>
+                                                $90.00 <del>$122.00</del>
+                                            </p>
+                                        </div>
+                                        <div class="border" />
+                                        <div class="cart-total">
+                                            <h6>Total Price</h6> <p>$178.00</p>
+                                            <div class="clearfix" />
+                                            <a href="index-new.html#" class="cart-view">
+                                                View all
+                                            </a>
+                                            <a href="check-out.html" class="cart-checkout">
+                                                Check out
+                                            </a>
+                                        </div>
+                                    </div>
                                 </ul>
                             </div>
                         </div>

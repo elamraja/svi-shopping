@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/Layouts/Header.js';
+import Footer from '../components/Layouts/Footer.js';
 import axios from 'axios';
 import { apiBASE } from '../utils/common.js';
 import ProductGrid from '../components/ProductGrid.js';
@@ -40,6 +41,7 @@ class Home extends Component {
                         <div className="row">{this.state.listproducts.length > 0 ? <ProductGrid list={this.state.listproducts} /> : ''}</div>
                     </div>
                 </section>
+                <Footer />
             </React.Fragment>
         );
     }

@@ -2,8 +2,7 @@ import React from 'react';
 
 export const apiBASE = 'http://127.0.0.1:8000/api/';
 
-export const trancateTitle = title => {
-    var length = 25;
+export const trancateTitle = (title, length) => {
     if (title.length > length) {
         title = title.substring(0, length) + '...';
     }

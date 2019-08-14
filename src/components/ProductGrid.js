@@ -16,7 +16,7 @@ class ProductGrid extends Component {
                                 </div>
                                 <div className="title_price">
                                     <a href="#" className="title">
-                                        {trancateTitle(item.name)}
+                                        {trancateTitle(item.name, 25)}
                                     </a>
                                     <span className="price">{cnCurrency(item.price)}</span>
                                     <button className="btn btn-cart">
