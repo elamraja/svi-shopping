@@ -64,7 +64,9 @@ ul {
   font-size: 16px;
   font-weight: 600;
   color: #444;
-  border-right: #9de3f7 thin solid;
+}
+.header-wrapper ul li a:hover {
+  color: #007bff;
 }
 
 .header .menu ul.cart_box li.cart {
@@ -402,4 +404,67 @@ section h2.title {
   display: inline-block;
   text-transform: uppercase;
   margin-top: 26px;
+}
+.auth_pop,
+.reg_pop {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  left: 0px;
+  top: 0px;
+  z-index: 50000;
+  height: 100vh;
+}
+.login {
+  width: 400px;
+  height: 330px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.sign {
+  width: 400px;
+  height: 438px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.login_box {
+  float: left;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border: #114982 2px solid;
+  border-radius: 3px;
+}
+.login_box h2 {
+  width: 100%;
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #27609a;
+  text-align: center;
+  text-transform: uppercase;
+}
+.login_box button {
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.login_box p.href_link {
+  width: 100%;
+  text-align: center;
+}
+.close_pop {
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  top: 3px;
 }

@@ -1,7 +1,39 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Login from '../auth/Login.js';
+import Register from '../auth/Register.js';
+
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isShowRegisteration: false,
+            isShowLogin: false
+        };
+    }
+
+    showLogin = what => {
+        this.setState({
+            isShowLogin: what
+        });
+    };
+    showRegisteration = what => {
+        this.setState({
+            isShowRegisteration: what
+        });
+    };
     render() {
+        const login = (
+            <div className="auth_pop">
+                <Login close={() => this.showLogin(false)} />
+            </div>
+        );
+
+        const registeration = (
+            <div className="reg_pop">
+                <Register close={() => this.showRegisteration(false)} />
+            </div>
+        );
         return (
             <div className="header">
                 <div className="header-wrapper">
@@ -15,7 +47,13 @@ class Header extends Component {
                             <div className="col-md-6">
                                 <ul>
                                     <li>
-                                        <a href="#">Login / Register</a>
+                                        <a onClick={() => this.showLogin(true)} href="javscript:void(0)">
+                                            Login
+                                        </a>
+                                        /
+                                        <a onClick={() => this.showRegisteration(true)} href="javscript:void(0)">
+                                            Register
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -90,6 +128,8 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
+                {this.state.isShowLogin ? login : ''}
+                {this.state.isShowRegisteration ? registeration : ''}
             </div>
         );
     }
