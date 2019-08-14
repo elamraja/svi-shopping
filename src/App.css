@@ -263,8 +263,8 @@ section h2.title {
   top: 52px;
   background-color: #fff;
   padding: 25px;
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transition: all 0.2s ease-in-out 0s;
   z-index: 99;
   right: -16%;
@@ -293,19 +293,21 @@ section h2.title {
   position: relative;
   margin-bottom: 20px;
   padding-right: 15px;
-  min-height: 73px;
+  min-height: 60px;
   text-align: left;
 }
 .quick_cart .cart-item-list img {
   float: left;
   vertical-align: middle;
   margin-right: 10px;
+  width: 60px;
+  height: 60px;
 }
 .quick_cart .cart-item-list h3 {
   color: #212121;
   font-size: 14px;
   margin-top: 0;
-  line-height: 22px;
+  line-height: 18px;
   margin-bottom: 7px;
   transition: all 0.4s;
 }
@@ -373,6 +375,12 @@ section h2.title {
   border: 2px solid #212121;
   float: left;
 }
+
+.quick_cart .cart-total a.cart-view:hover {
+  background-color: #fff;
+  color: #212121;
+  text-decoration: none;
+}
 .quick_cart .cart-total a {
   color: #fff;
   font-size: 15px;
@@ -384,13 +392,18 @@ section h2.title {
   transition: all 0.3s;
   display: inline-block;
   text-transform: uppercase;
-  margin-top: 26px;
+  margin-top: 0px;
 }
 
 .quick_cart .cart-total a.cart-checkout {
-  background-color: #ff3c20;
-  border: 2px solid #ff3c20;
+  background-color: #000887;
+  border: 2px solid #000887;
   float: right;
+}
+.quick_cart .cart-total a.cart-checkout:hover {
+  background-color: #fff;
+  color: #000887;
+  text-decoration: none;
 }
 .quick_cart .cart-total a {
   color: #fff;
@@ -403,7 +416,7 @@ section h2.title {
   transition: all 0.3s;
   display: inline-block;
   text-transform: uppercase;
-  margin-top: 26px;
+  margin-top: 0px;
 }
 .auth_pop,
 .reg_pop {
@@ -474,4 +487,25 @@ section h2.title {
 .success_msg {
   color: green !important;
   padding: 50px 20px !important;
+}
+
+.qty_label {
+  color: #3689dd;
+}
+.inner-banner {
+  background-color: #2d2d2d;
+}
+.inner-banner h2 {
+  text-align: center;
+  color: #fff;
+}
+.cart_table tbody tr td {
+  vertical-align: middle;
+}
+.cart_table tbody tr td img {
+  width: 100px;
+}
+.btn-link {
+  color: #fff !important;
+  cursor: pointer;
 }

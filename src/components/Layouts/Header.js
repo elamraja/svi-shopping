@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import { USER_SIGNOUT } from '../../store.js';
 import Login from '../auth/Login.js';
 import Register from '../auth/Register.js';
+import Quickcart from '../Quickcart.js';
 
 class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isShowRegisteration: false,
-            isShowLogin: false
+            isShowLogin: false,
+            isShowQuick: false
         };
     }
 
@@ -31,6 +33,17 @@ class Header extends Component {
         if (what == true) {
             this.setState({
                 isShowLogin: false
+            });
+        }
+    };
+    showQuick = () => {
+        if (this.state.isShowQuick == true) {
+            this.setState({
+                isShowQuick: false
+            });
+        } else {
+            this.setState({
+                isShowQuick: true
             });
         }
     };
@@ -113,47 +126,11 @@ class Header extends Component {
                             <div className="col-md-6">
                                 <ul className="cart_box">
                                     <li className="cart">
-                                        <a href="#">
-                                            <i className="fa fa-shopping-basket" /> <span>0 item's</span>
+                                        <a onClick={this.showQuick} href="#">
+                                            <i className="fa fa-shopping-basket" /> <span>{this.props.cartitems.length} item(s)</span>
                                         </a>
                                     </li>
-                                    <div className="quick_cart">
-                                        <div className="cart-item-list">
-                                            <img src="img/index/cart-item-1.jpg" alt="" />
-                                            <a href="index-new.html#">
-                                                <h3>Beats Classic Headphone</h3>
-                                            </a>
-                                            <b>
-                                                <a href="index-new.html#">X</a>
-                                            </b>
-                                            <p>
-                                                $88.00 <del>$120.00</del>
-                                            </p>
-                                        </div>
-                                        <div className="cart-item-list">
-                                            <img src="img/index/cart-item-2.jpg" alt="" />
-                                            <a href="index-new.html#">
-                                                <h3>Samsung Classic Tablet</h3>
-                                            </a>
-                                            <b>
-                                                <a href="index-new.html#">X</a>
-                                            </b>
-                                            <p>
-                                                $90.00 <del>$122.00</del>
-                                            </p>
-                                        </div>
-                                        <div className="border" />
-                                        <div className="cart-total">
-                                            <h6>Total Price</h6> <p>$178.00</p>
-                                            <div className="clearfix" />
-                                            <a href="index-new.html#" className="cart-view">
-                                                View all
-                                            </a>
-                                            <a href="check-out.html" className="cart-checkout">
-                                                Check out
-                                            </a>
-                                        </div>
-                                    </div>
+                                    {this.state.isShowQuick ? <Quickcart /> : ''}
                                 </ul>
                             </div>
                         </div>
@@ -169,7 +146,8 @@ class Header extends Component {
 const mapStateToProps = state => {
     return {
         userAuthenticated: state.user.isUserAuthenticated,
-        userData: state.user.authUser
+        userData: state.user.authUser,
+        cartitems: state.user.cartItems
     };
 };
 const mapDispatchToProps = dispatch => {
