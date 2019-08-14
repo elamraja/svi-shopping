@@ -468,3 +468,10 @@ section h2.title {
   font-size: 20px;
   top: 3px;
 }
+.form-group.has-error .help-block {
+  color: #b50505;
+}
+.success_msg {
+  color: green !important;
+  padding: 50px 20px !important;
+}

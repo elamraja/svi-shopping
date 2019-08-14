@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { USER_SIGNOUT } from '../../store.js';
 import Login from '../auth/Login.js';
 import Register from '../auth/Register.js';
 
@@ -16,22 +18,63 @@ class Header extends Component {
         this.setState({
             isShowLogin: what
         });
+        if (what == true) {
+            this.setState({
+                isShowRegisteration: false
+            });
+        }
     };
     showRegisteration = what => {
         this.setState({
             isShowRegisteration: what
         });
+        if (what == true) {
+            this.setState({
+                isShowLogin: false
+            });
+        }
     };
     render() {
+        let topLink = '';
+        if (this.props.userAuthenticated) {
+            topLink = (
+                <ul>
+                    <li>
+                        <span>
+                            <i className="fa fa-user" /> {this.props.userData.user.name}
+                        </span>
+                    </li>
+                    <li>
+                        <a onClick={this.props.logout} href="#">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            );
+        } else {
+            topLink = (
+                <ul>
+                    <li>
+                        <a onClick={() => this.showLogin(true)} href="#">
+                            Login
+                        </a>
+                        /
+                        <a onClick={() => this.showRegisteration(true)} href="#">
+                            Register
+                        </a>
+                    </li>
+                </ul>
+            );
+        }
         const login = (
             <div className="auth_pop">
-                <Login close={() => this.showLogin(false)} />
+                <Login showRegist={() => this.showRegisteration(true)} close={() => this.showLogin(false)} />
             </div>
         );
 
         const registeration = (
             <div className="reg_pop">
-                <Register close={() => this.showRegisteration(false)} />
+                <Register showLog={() => this.showLogin(true)} close={() => this.showRegisteration(false)} />
             </div>
         );
         return (
@@ -44,19 +87,7 @@ class Header extends Component {
                                     <h2>SVI Shopping</h2>
                                 </div>
                             </div>
-                            <div className="col-md-6">
-                                <ul>
-                                    <li>
-                                        <a onClick={() => this.showLogin(true)} href="javscript:void(0)">
-                                            Login
-                                        </a>
-                                        /
-                                        <a onClick={() => this.showRegisteration(true)} href="javscript:void(0)">
-                                            Register
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div className="col-md-6">{topLink}</div>
                         </div>
                     </div>
                 </div>
@@ -87,7 +118,7 @@ class Header extends Component {
                                         </a>
                                     </li>
                                     <div className="quick_cart">
-                                        <div class="cart-item-list">
+                                        <div className="cart-item-list">
                                             <img src="img/index/cart-item-1.jpg" alt="" />
                                             <a href="index-new.html#">
                                                 <h3>Beats Classic Headphone</h3>
@@ -99,7 +130,7 @@ class Header extends Component {
                                                 $88.00 <del>$120.00</del>
                                             </p>
                                         </div>
-                                        <div class="cart-item-list">
+                                        <div className="cart-item-list">
                                             <img src="img/index/cart-item-2.jpg" alt="" />
                                             <a href="index-new.html#">
                                                 <h3>Samsung Classic Tablet</h3>
@@ -111,14 +142,14 @@ class Header extends Component {
                                                 $90.00 <del>$122.00</del>
                                             </p>
                                         </div>
-                                        <div class="border" />
-                                        <div class="cart-total">
+                                        <div className="border" />
+                                        <div className="cart-total">
                                             <h6>Total Price</h6> <p>$178.00</p>
-                                            <div class="clearfix" />
-                                            <a href="index-new.html#" class="cart-view">
+                                            <div className="clearfix" />
+                                            <a href="index-new.html#" className="cart-view">
                                                 View all
                                             </a>
-                                            <a href="check-out.html" class="cart-checkout">
+                                            <a href="check-out.html" className="cart-checkout">
                                                 Check out
                                             </a>
                                         </div>
@@ -134,4 +165,21 @@ class Header extends Component {
         );
     }
 }
-export default Header;
+
+const mapStateToProps = state => {
+    return {
+        userAuthenticated: state.user.isUserAuthenticated,
+        userData: state.user.authUser
+    };
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: function() {
+            dispatch({ type: USER_SIGNOUT });
+        }
+    };
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);

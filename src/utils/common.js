@@ -17,3 +17,9 @@ export const cnCurrency = currency => {
             .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     );
 };
+
+export const isValidEmail = email => {
+    const pattern = /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
+    const result = pattern.test(email);
+    return result;
+};
